@@ -17,4 +17,10 @@ public class UserController {
 	public String loginForm() {
 		return "user/login_form";
 	}
+	
+	// 내 정보 화면 
+	@GetMapping("/user/my-info")
+	public String userInfo() {
+		return "user/update_form";
+	}
 }

@@ -51,7 +51,7 @@
 		  <h4><a class="nav-link text-secondary" href="#">글쓰기</a></h4>
 		</li>
 		<li class="nav-item">
-		  <h4><a class="nav-link text-secondary" href="#">내 정보</a></h4>
+		  <h4><a class="nav-link text-secondary" href="/user/my-info">내 정보</a></h4>
 		</li>
 		<li class="nav-item">
 		  <h4><a class="nav-link text-secondary" href="#">로그아웃</a></h4>
