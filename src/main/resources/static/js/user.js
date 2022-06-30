@@ -26,3 +26,5 @@ let user = {
 		});
 	}
 }
+
+user.init();

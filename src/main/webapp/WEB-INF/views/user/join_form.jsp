@@ -20,7 +20,7 @@
 	</form>	
 </div>
 
-<script></script>
+<script src="/js/user.js"></script>
 
 </body>
 </html>
