@@ -50,6 +50,12 @@ let user = {
 		}).fail(function(){
 			alert("회원 정보수정 실패");
 		});
+	},
+	
+	logout: function(){
+		if(confirm("로그아웃 하시겠습니까?")){
+			location.href = "/logout";
+		}
 	}
 }
 
