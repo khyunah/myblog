@@ -8,6 +8,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.blog.myblog.model.User;
 
+import lombok.Data;
+
+@Data
 public class PrincipalUserDetail implements UserDetails {
 
 	/**
