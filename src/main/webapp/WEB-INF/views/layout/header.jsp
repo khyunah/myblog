@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<sec:authorize access="isAuthenticated()">
+    <sec:authentication property="principal" var="principal"/>
+</sec:authorize>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,15 +25,40 @@
 <body>
 
 <ul class="nav justify-content-center m-4">
-	<li class="nav-item">
-	  <h4><a class="nav-link text-secondary" href="/">메인</a></h4>
-	</li>
-	<li class="nav-item">
-	  <h4><a class="nav-link text-secondary" href="#">로그인</a></h4>
-	</li>
-	<li class="nav-item">
-	  <h4><a class="nav-link text-secondary" href="/auth/join_form">회원가입</a></h4>
-	</li>
+<c:choose>
+	<c:when test="${empty principal}">
+		<li class="nav-item">
+		  <h4><a class="nav-link text-secondary" href="/">메인</a></h4>
+		</li>
+		<li class="nav-item">
+		  <h4><a class="nav-link text-secondary" href="#">나의 블로그</a></h4>
+		</li>
+		<li class="nav-item">
+		  <h4><a class="nav-link text-secondary" href="/auth/login_form">로그인</a></h4>
+		</li>
+		<li class="nav-item">
+		  <h4><a class="nav-link text-secondary" href="/auth/join_form">회원가입</a></h4>
+		</li>
+	</c:when>
+	<c:otherwise>
+		<li class="nav-item">
+		  <h4><a class="nav-link text-secondary" href="/">메인</a></h4>
+		</li>
+		<li class="nav-item">
+		  <h4><a class="nav-link text-secondary" href="#">나의 블로그</a></h4>
+		</li>
+		<li class="nav-item">
+		  <h4><a class="nav-link text-secondary" href="#">글쓰기</a></h4>
+		</li>
+		<li class="nav-item">
+		  <h4><a class="nav-link text-secondary" href="#">내 정보</a></h4>
+		</li>
+		<li class="nav-item">
+		  <h4><a class="nav-link text-secondary" href="#">로그아웃</a></h4>
+		</li>
+	</c:otherwise>
+</c:choose>
+	
 </ul>
 <hr/>
 <br/>

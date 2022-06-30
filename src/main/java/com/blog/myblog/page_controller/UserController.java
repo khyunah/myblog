@@ -11,4 +11,10 @@ public class UserController {
 	public String joinForm() {
 		return "user/join_form";
 	}
+	
+	// 로그인 화면 
+	@GetMapping("/auth/login_form")
+	public String loginForm() {
+		return "user/login_form";
+	}
 }
