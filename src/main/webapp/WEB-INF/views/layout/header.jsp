@@ -21,6 +21,10 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- summernote -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 </head>
 <body>
 
@@ -45,10 +49,10 @@
 		  <h4><a class="nav-link text-secondary" href="/">메인</a></h4>
 		</li>
 		<li class="nav-item">
-		  <h4><a class="nav-link text-secondary" href="#">나의 블로그</a></h4>
+		  <h4><a class="nav-link text-secondary" href="/board/index">나의 블로그</a></h4>
 		</li>
 		<li class="nav-item">
-		  <h4><a class="nav-link text-secondary" href="#">글쓰기</a></h4>
+		  <h4><a class="nav-link text-secondary" href="/board/write_form">글쓰기</a></h4>
 		</li>
 		<li class="nav-item">
 		  <h4><a class="nav-link text-secondary" href="/user/my-info">내 정보</a></h4>
