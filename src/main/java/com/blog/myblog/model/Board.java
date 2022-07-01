@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -39,6 +41,7 @@ public class Board {
 	private User user;
 	// Reply안에 있는 board가 FK가 되는 것
 	@OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
+	@JsonIgnoreProperties({"board", "user"})
 	private List<Reply> replys;
 	@CreationTimestamp
 	private Timestamp createDate;

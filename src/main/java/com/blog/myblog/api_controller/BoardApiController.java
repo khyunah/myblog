@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.blog.myblog.auth.PrincipalUserDetail;
 import com.blog.myblog.dto.ResponseDto;
 import com.blog.myblog.model.Board;
+import com.blog.myblog.model.Reply;
 import com.blog.myblog.service.BoardService;
 
 @RestController
@@ -40,6 +41,13 @@ public class BoardApiController {
 	public ResponseDto<Board> updateBoard(@RequestBody Board board){
 		Board boardEntity = boardService.updateBoard(board);
 		return new ResponseDto<Board>(HttpStatus.OK.value(), boardEntity);
+	}
+	
+	// 댓글 등록
+	@PostMapping("/board-reply/{boardId}/save")
+	public ResponseDto<Reply> saveReply(@PathVariable int boardId, @RequestBody Reply reply, 
+			@AuthenticationPrincipal PrincipalUserDetail detail){
+		return new ResponseDto<>(HttpStatus.OK.value(), boardService.saveReply(boardId, reply, detail.getUser()));
 	}
 
 }

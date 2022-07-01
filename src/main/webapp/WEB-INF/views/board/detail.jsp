@@ -7,6 +7,7 @@
 	<br/><br/><br/>
 </div>
 <div class="container">
+	<input type="hidden" id="boardId" value="${board.id}">
 	<div class="text-center">
 		<h3>${board.title}</h3>
 	</div>
@@ -30,7 +31,7 @@
 <div class="container">
 	<ul class="list-group" id="reply-list">
 		<c:forEach items="${board.replys}" var="reply">
-			<li class="list-group-item d-flex justify-content-between" id="reply-1">
+			<li class="list-group-item d-flex justify-content-between" id="reply-${reply.id}">
 				<div>${reply.content}</div>
 				<div class="d-flex">
 					<div>작성자 : ${reply.user.username}&nbsp;&nbsp;</div>
@@ -40,5 +41,6 @@
 		</c:forEach>
 	</ul>
 </div>
+<script src="/js/board.js"></script>
 </body>
 </html>

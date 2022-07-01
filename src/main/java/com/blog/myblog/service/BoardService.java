@@ -7,14 +7,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.blog.myblog.model.Board;
+import com.blog.myblog.model.Reply;
 import com.blog.myblog.model.User;
 import com.blog.myblog.repository.BoardRepository;
+import com.blog.myblog.repository.ReplyRepository;
 
 @Service
 public class BoardService {
 
 	@Autowired
 	private BoardRepository boardRepository;
+	
+	@Autowired
+	private ReplyRepository replyRepository;
 	
 	// 글 전체 가져오기
 	@Transactional(readOnly = true)
@@ -56,6 +61,17 @@ public class BoardService {
 		boardEntity.setContent(board.getContent());
 		
 		return boardEntity;
+	}
+	
+	// 댓글 등록하기
+	@Transactional
+	public Reply saveReply(int id, Reply reply, User user) {
+		reply = Reply.builder()
+				.content(reply.getContent())
+				.board(detailBoard(id))
+				.user(user)
+				.build();
+		return replyRepository.save(reply);
 	}
 	
 }

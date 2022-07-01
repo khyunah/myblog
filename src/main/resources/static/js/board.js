@@ -75,8 +75,38 @@ let board = {
 	}, 
 	
 	replySave: function(){
-		
+		let data = {
+			boardId: $("#boardId").val(),
+			content: $("#reply-content").val()
+		}
+
+		$.ajax({
+			type: "POST",
+			url: `/board-reply/${data.boardId}/save`,
+			data: JSON.stringify(data),
+			contentType: "application/json; charset=utf-8",
+			dataType: "json"
+		}).done(function(response){
+			alert("댓글 작성 완료");
+			addReplyHtml(response.data);
+		}).fail(function(){
+			alert("댓글 작성 오류");
+		});
 	}
+}
+
+function addReplyHtml(reply){
+	let replyHtml = `
+			<li class="list-group-item d-flex justify-content-between" id="reply-${reply.id}">
+				<div>${reply.content}</div>
+				<div class="d-flex">
+					<div>작성자 : ${reply.user.username}&nbsp;&nbsp;</div>
+					<button type="button" class="btn btn-sm btn-outline-secondary">삭제</button>
+				</div>
+			</li>
+	`
+	$("#reply-list").prepend(replyHtml);
+	$("#reply-content").val("");
 }
 
 board.init();
