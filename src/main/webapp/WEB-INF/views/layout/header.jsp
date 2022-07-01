@@ -54,7 +54,7 @@
 		  <h4><a class="nav-link text-secondary" href="/user/my-info">내 정보</a></h4>
 		</li>
 		<li class="nav-item">
-		  <button class="btn text-secondary" onclick="user.logout()"><h4>로그아웃</h4></button>
+		  <button class="btn text-secondary" onclick="logout.logout()"><h4>로그아웃</h4></button>
 		</li>
 	</c:otherwise>
 </c:choose>
@@ -63,4 +63,4 @@
 <hr/>
 <br/>
 
-<script src="/js/user.js"></script>
+<script src="/js/logout.js"></script>
