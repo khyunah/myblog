@@ -39,7 +39,7 @@
 				<div class="d-flex">
 					<div>작성자 : ${reply.user.username}&nbsp;&nbsp;</div>
 					<c:if test="${reply.user.id eq principal.user.id}">
-						<button id="btn-reply-delete" type="button" class="btn btn-sm btn-outline-secondary">삭제</button>
+						<button onclick="board.deleteReply(${reply.id}, ${board.id})" type="button" class="btn btn-sm btn-outline-secondary">삭제</button>
 					</c:if>
 				</div>
 			</li>

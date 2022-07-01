@@ -5,7 +5,9 @@ let board = {
 		});
 		
 		$("#btn-delete").bind("click", () => {
-			this.delete();
+			if(confirm("게시글을 삭제할까요?")){
+				this.delete();
+			}
 		});
 		
 		$("#btn-update").bind("click", () => {
@@ -14,10 +16,6 @@ let board = {
 		
 		$("#btn-reply-save").bind("click", () => {
 			this.replySave();
-		});
-
-		$("#btn-reply-delete").bind("click", () => {
-			this.replyDelete();
 		});
 	},
 	
@@ -96,20 +94,28 @@ let board = {
 		});
 	},
 	
-	replyDelete: function(){
-		
+	deleteReply: function(replyId, boardId){
+		$.ajax({
+			type: "DELETE",
+			url: `/board-reply/delete/${replyId}`,
+			dataType: "json"
+		}).done(function(){
+			location.href = `/board/${boardId}`
+		}).fail(function(){
+			alert("댓글 삭제 실패");
+		});
 	}
 }
 
 function addReplyHtml(reply){
-	let userId = $("#userId").val();
+	let boardId = $("#boardId").val();
 	let replyHtml = `
 			<li class="list-group-item d-flex justify-content-between" id="reply-${reply.id}">
 				<div>${reply.content}</div>
 				<div class="d-flex">
 					<div>작성자 : ${reply.user.username}&nbsp;&nbsp;</div>
 					<c:if test="${reply.user.id == userId}">
-						<button type="button" class="btn btn-sm btn-outline-secondary">삭제</button>
+						<button onclick="board.deleteReply(${reply.id}, ${boardId})" type="button" class="btn btn-sm btn-outline-secondary">삭제</button>
 					</c:if>
 				</div>
 			</li>

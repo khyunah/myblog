@@ -3,6 +3,7 @@ package com.blog.myblog.model;
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -40,8 +42,9 @@ public class Board {
 	@JoinColumn(name = "user")
 	private User user;
 	// Reply안에 있는 board가 FK가 되는 것
-	@OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties({"board", "user"})
+	@OrderBy("id desc")
 	private List<Reply> replys;
 	@CreationTimestamp
 	private Timestamp createDate;

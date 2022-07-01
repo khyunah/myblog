@@ -49,5 +49,12 @@ public class BoardApiController {
 			@AuthenticationPrincipal PrincipalUserDetail detail){
 		return new ResponseDto<>(HttpStatus.OK.value(), boardService.saveReply(boardId, reply, detail.getUser()));
 	}
+	
+	// 댓글 삭제
+	@DeleteMapping("/board-reply/delete/{replyId}")
+	public ResponseDto<Integer> deleteReply(@PathVariable int replyId){
+		boardService.deleteReplyById(replyId);
+		return new ResponseDto<>(HttpStatus.OK.value(), 1);
+	}
 
 }
