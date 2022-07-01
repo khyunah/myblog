@@ -38,4 +38,10 @@ public class BoardService {
 		});
 		return board;
 	}
+	
+	// 글 삭제하기
+	@Transactional
+	public void deleteBoardById(int id) {
+		boardRepository.deleteById(id);
+	}
 }
