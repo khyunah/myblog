@@ -6,6 +6,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,4 +34,12 @@ public class BoardApiController {
 		boardService.deleteBoardById(id);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
+	
+	// 글 수정하기
+	@PutMapping("/board/update")
+	public ResponseDto<Board> updateBoard(@RequestBody Board board){
+		Board boardEntity = boardService.updateBoard(board);
+		return new ResponseDto<Board>(HttpStatus.OK.value(), boardEntity);
+	}
+
 }

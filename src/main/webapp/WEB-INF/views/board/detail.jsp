@@ -3,11 +3,10 @@
 <%@ include file="../layout/header.jsp"%>
 <div class="container">
 	<button id="btn-delete" type="button" class="btn btn-secondary float-right m-1">삭제</button>
-	<button id="btn-update" type="button" class="btn btn-secondary float-right m-1">수정</button>
+	<a href="/board/update_form/${board.id}" type="button" class="btn btn-secondary float-right m-1">수정</a>
 	<br/><br/><br/>
 </div>
 <div class="container">
-	<input type="hidden" id="boardId" value="${board.id}">
 	<div class="text-center">
 		<h3>${board.title}</h3>
 	</div>
@@ -16,6 +15,5 @@
 		<p>${board.content}</p>
 	</div>
 </div>
-<script src="/js/board.js"></script>
 </body>
 </html>

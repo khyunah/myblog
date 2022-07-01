@@ -5,11 +5,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 
+import com.blog.myblog.dto.ResponseDto;
 import com.blog.myblog.model.Board;
 import com.blog.myblog.service.BoardService;
 
@@ -41,6 +44,14 @@ public class BoardController {
 		Board board = boardService.detailBoard(id);
 		model.addAttribute("board", board);
 		return "board/detail";
+	}
+	
+	// 글 수정 화면
+	@GetMapping("/board/update_form/{id}")
+	public String updateBoard(@PathVariable int id, Model model){
+		Board board = boardService.detailBoard(id);
+		model.addAttribute("board", board);
+		return "board/board_update_form";
 	}
 
 }

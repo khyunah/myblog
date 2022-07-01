@@ -47,6 +47,27 @@ let board = {
 		}).fail(function(){
 			alert("게시글 삭제 실패");
 		});
+	},
+	
+	update: function(){
+		let data = {
+			id: $("#boardId").val(),
+			title: $("#title").val(),
+			content: $("#content").val()
+		}
+		
+		$.ajax({
+			type:"PUT",
+			url: "/board/update",
+			data: JSON.stringify(data),
+			contentType: "application/json; charset=utf-8",
+			dataType: "json"
+		}).done(function(){
+			alert("게시글 수정 성공");
+			location.href = `/board/${data.id}`
+		}).fail(function(){
+			alert("게시글 수정 실패");
+		});
 	}
 }
 

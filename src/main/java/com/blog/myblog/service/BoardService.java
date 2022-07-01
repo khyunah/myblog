@@ -44,4 +44,18 @@ public class BoardService {
 	public void deleteBoardById(int id) {
 		boardRepository.deleteById(id);
 	}
+	
+	// 글 수정하기
+	@Transactional
+	public Board updateBoard(Board board) {
+		Board boardEntity = boardRepository.findById(board.getId()).orElseThrow(() -> {
+			return new IllegalArgumentException("해당 게시물이 존재하지 않습니다.");
+		});
+		
+		boardEntity.setTitle(board.getTitle());
+		boardEntity.setContent(board.getContent());
+		
+		return boardEntity;
+	}
+	
 }
