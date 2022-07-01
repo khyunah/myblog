@@ -16,6 +16,9 @@ let board = {
 			this.replySave();
 		});
 
+		$("#btn-reply-delete").bind("click", () => {
+			this.replyDelete();
+		});
 	},
 	
 	save: function(){
@@ -87,21 +90,27 @@ let board = {
 			contentType: "application/json; charset=utf-8",
 			dataType: "json"
 		}).done(function(response){
-			alert("댓글 작성 완료");
 			addReplyHtml(response.data);
 		}).fail(function(){
 			alert("댓글 작성 오류");
 		});
+	},
+	
+	replyDelete: function(){
+		
 	}
 }
 
 function addReplyHtml(reply){
+	let userId = $("#userId").val();
 	let replyHtml = `
 			<li class="list-group-item d-flex justify-content-between" id="reply-${reply.id}">
 				<div>${reply.content}</div>
 				<div class="d-flex">
 					<div>작성자 : ${reply.user.username}&nbsp;&nbsp;</div>
-					<button type="button" class="btn btn-sm btn-outline-secondary">삭제</button>
+					<c:if test="${reply.user.id == userId}">
+						<button type="button" class="btn btn-sm btn-outline-secondary">삭제</button>
+					</c:if>
 				</div>
 			</li>
 	`
