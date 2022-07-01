@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.blog.myblog.dto.ResponseDto;
 import com.blog.myblog.model.Board;
@@ -25,10 +26,12 @@ public class BoardController {
 	private BoardService boardService;
 
 	// 나의 블로그 화면
-	@GetMapping("/board/index")
-	public String boardIndex(@PageableDefault(size = 5, sort = "id", direction = Direction.DESC) Pageable pageable
+	@GetMapping({"/board/index", "/board/search"})
+	public String boardIndex(String q, @PageableDefault(size = 5, sort = "id", direction = Direction.DESC) Pageable pageable
 			, Model model) {
-		Page<Board> boards = boardService.getBoardList(pageable);
+		
+		String title = q == null ? "" : q;
+		Page<Board> boards = boardService.searchBoardByTitle(title, pageable);
 		
 		int nowPage = boards.getNumber() + 1;
 		int startPage = Math.max(nowPage - 2, 1);

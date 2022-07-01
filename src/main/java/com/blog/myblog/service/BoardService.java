@@ -80,4 +80,10 @@ public class BoardService {
 		replyRepository.deleteById(replyId);
 	}
 	
+	// 검색하여 목록 가져오기
+	@Transactional
+	public Page<Board> searchBoardByTitle(String title, Pageable pageable){
+		return boardRepository.findByTitleContaining(title, pageable);
+	}
+	
 }
