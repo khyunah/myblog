@@ -15,5 +15,30 @@
 		<p>${board.content}</p>
 	</div>
 </div>
+<br/><br/><br/><br/>
+
+<!-- 댓글부분 -->
+<div class="container">
+	<div class="input-group mb-3">
+	  <input id="reply-content" type="text" class="form-control" placeholder="댓글">
+	  <div class="input-group-append">
+	    <button id="btn-reply-save" class="btn btn-secondary" type="button">등록</button>
+	  </div>
+	</div>
+</div>
+
+<div class="container">
+	<ul class="list-group" id="reply-list">
+		<c:forEach items="${board.replys}" var="reply">
+			<li class="list-group-item d-flex justify-content-between" id="reply-1">
+				<div>${reply.content}</div>
+				<div class="d-flex">
+					<div>작성자 : ${reply.user.username}&nbsp;&nbsp;</div>
+					<button type="button" class="btn btn-sm btn-outline-secondary">삭제</button>
+				</div>
+			</li>
+		</c:forEach>
+	</ul>
+</div>
 </body>
 </html>

@@ -11,6 +11,10 @@ let board = {
 		$("#btn-update").bind("click", () => {
 			this.update();
 		});
+		
+		$("#btn-reply-save").bind("click", () => {
+			this.replySave();
+		});
 
 	},
 	
@@ -68,6 +72,10 @@ let board = {
 		}).fail(function(){
 			alert("게시글 수정 실패");
 		});
+	}, 
+	
+	replySave: function(){
+		
 	}
 }
 
