@@ -4,11 +4,10 @@
 
 <div class="container">
 	<c:forEach var="board" items="${boards.content}">
-		<div class="card">
+		<div class="card text-center">
 		  <div class="card-body">
 		    <h4 class="card-title" id="title" >${board.title}</h4>
-		    <p class="card-text" id="content">${board.content}</p>
-		    <a href="#" class="card-link">더보기</a>
+		    <a href="/board/${board.id}" class="card-link text-secondary">더보기</a>
 		  </div>
 		</div>
 		<br/>

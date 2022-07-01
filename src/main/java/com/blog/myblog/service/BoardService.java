@@ -29,4 +29,13 @@ public class BoardService {
 		board.setUser(user);
 		return boardRepository.save(board);
 	}
+	
+	// 글 상세보기 
+	@Transactional
+	public Board detailBoard(int id) {
+		Board board =  boardRepository.findById(id).orElseThrow(() -> {
+			return new IllegalArgumentException("해당 게시물이 존재하지 않습니다.");
+		});
+		return board;
+	}
 }
