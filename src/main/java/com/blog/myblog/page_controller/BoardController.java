@@ -1,5 +1,7 @@
 package com.blog.myblog.page_controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,7 +30,17 @@ public class BoardController {
 			, Model model) {
 		Page<Board> boards = boardService.getBoardList(pageable);
 		
-		model.addAttribute("boards", boards);
+		int nowPage = boards.getNumber() + 1;
+		int startPage = Math.max(nowPage - 2, 1);
+		int endPage = Math.min(nowPage + 2, boards.getTotalPages());
+		
+		ArrayList<Integer> pages = new ArrayList<>();
+		for (int i = startPage; i <= endPage; i++) {
+			pages.add(i);
+		}
+		
+		model.addAttribute("boards", boards.getContent());
+		model.addAttribute("pages", pages);
 		return "board/board_index";
 	}
 	
