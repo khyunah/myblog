@@ -37,7 +37,6 @@
 			<a class="page-link text-secondary" href="/board/index?page=${board.number + 1}">다음</a>
 		</li>
 	</ul>
-	
 </div>
 
 </body>
