@@ -37,5 +37,13 @@ public class UserService {
 		userEntity.setPassword(encpdingPassword);
 		userEntity.setEmail(user.getEmail());
 	}
+	
+	// 카카오로그인 가입전 기존 유저에 등록되어 있는지 조회
+	@Transactional
+	public User searchUser(User user) {
+		return userRepository.findByUsername(user.getUsername()).orElseGet(() -> {
+			return new User();
+		});
+	}
 
 }

@@ -27,12 +27,14 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(unique = true, length = 60)
+	@Column(unique = true)
 	private String username;
 	private String password;
 	private String email;
 	@Enumerated(EnumType.STRING)
 	private RollType role;
+	@Enumerated(EnumType.STRING)
+	private OAuthType oauth;
 	@CreationTimestamp
 	private Timestamp createDate;
 	
